@@ -1,0 +1,68 @@
+@startuml
+class GameFrame {
+- GameRunner game
+- TileButton[][] board
+- void updateBoard()
+}
+
+
+class GameFrame$ButonClickListener {
++ void actionPerformed(ActionEvent)
+}
+
+class GameRunner {
+- Board board
+- Player playerX
+- Player playerO
+- Player currentPlayer
++ Player getCurrentPlayer()
++ boolean makeMove(int,int)
++ void switchPlayer()
++ boolean win()
++ boolean tie()
++ void reset()
++ String getCellText(int,int)
+}
+
+
+class Board {
+- String[][] game
++ void resetBoard()
++ boolean playerMove(Move)
++ String getTile(int,int)
++ boolean checkWin(String)
++ boolean checkTie()
+}
+
+
+class Move {
+- int row
+- int col
+- String player
++ int getRow()
++ int getCol()
++ String getPlayer()
+}
+
+
+class TileButton {
+- int row
+- int col
++ int getRow()
++ int getCol()
+}
+
+
+class Player {
+- String player
++ String getPlayer()
+}
+
+
+
+
+JFrame <|-- GameFrame
+GameFrame +.. GameFrame$ButonClickListener
+ActionListener <|.. GameFrame$ButonClickListener
+javax.swing.JButton <|-- TileButton
+@enduml
